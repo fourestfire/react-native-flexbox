@@ -8,39 +8,27 @@ import {
   Button
 } from 'react-native';
 
-import Dimensions from 'Dimensions';
-let {height, width} = Dimensions.get('window');
-console.log(width)
+import { StackNavigator } from 'react-navigation';
 
-const sampleContact = {
-  Name: 'Damon Doggo',
-  Address: '123 Main Street',
-  PhoneNumber: '212-787-4949',
-  FavoriteFood: 'Pizza',
-  Hobbies: 'Tennis, Frisbee'
-}
+import FlexboxBasics from './src/flexboxBasics'
+import FlexboxStyling from './src/flexboxStyling'
 
-export default class flexbox extends Component {
-
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'React Native: Flexbox',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={styles.profilePicture}>
-          <Image source={require('./doggo.jpg')} style={{height: 140, width: 140, borderRadius: 70, marginBottom: 20}}/>
-          <Text style={[styles.text, {fontSize: 27, fontWeight:'100'}]}> {sampleContact.Name.split(' ')[0]} </Text>
-        </View>
-
-        {/*<View style={styles.divider} />*/}
-        {
-          Object.keys(sampleContact).map(key => {
-            return (
-              <View key={key} style={styles.contactRow}>
-                <Text style={styles.contactKey}> {key.replace(/([A-Z])/g, ' $1')} </Text>
-                <Text style={styles.contactValue}> {sampleContact[key]} </Text>
-              </View>
-            );
-          })
-        }
+        <Button
+          onPress={() => navigate('FlexboxBasics')}
+          title="Basic Flexbox"
+        />
+        <Button
+          onPress={() => navigate('FlexboxStyling')}
+          title="Flexbox Styling Example"
+        />
       </View>
     );
   }
@@ -49,43 +37,14 @@ export default class flexbox extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 30,
-  },
-
-  divider: {
-    borderBottomWidth: 1,
-    borderColor: 'lightgrey',
-  },
-
-  text: {
-    fontSize: 16,
-  },
-
-  profilePicture: {
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'ghostwhite',
-    flex: 1,
-    borderRadius: 10
   },
+});
 
-  contactRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'lightgrey',
-  },
-
-  contactKey: {
-    marginLeft: 10,
-    width: 120,
-    fontWeight: 'bold',
-  },
-
-  contactValue: {
-    paddingVertical: 28
-  }
-
+const flexbox = StackNavigator({
+  Home: { screen: HomeScreen },
+  FlexboxBasics: { screen: FlexboxBasics },
+  FlexboxStyling: { screen: FlexboxStyling },
 });
 
 AppRegistry.registerComponent('flexbox', () => flexbox);
