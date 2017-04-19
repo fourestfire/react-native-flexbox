@@ -10,8 +10,9 @@ import {
 
 import { StackNavigator } from 'react-navigation';
 
-import FlexboxBasics from './src/flexboxBasics'
-import FlexboxStyling from './src/flexboxStyling'
+import FlexboxBasics from './src/FlexboxBasics'
+import FlexboxStyling from './src/FlexboxStyling'
+import BasicReactNative from './src/BasicReactNative'
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -21,6 +22,10 @@ class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
+        <Button
+          onPress={() => navigate('BasicReactNative')}
+          title="Basic React Native"
+        />
         <Button
           onPress={() => navigate('FlexboxBasics')}
           title="Basic Flexbox"
@@ -43,6 +48,7 @@ const styles = StyleSheet.create({
 
 const flexbox = StackNavigator({
   Home: { screen: HomeScreen },
+  BasicReactNative: { screen: BasicReactNative },
   FlexboxBasics: { screen: FlexboxBasics },
   FlexboxStyling: { screen: FlexboxStyling },
 });

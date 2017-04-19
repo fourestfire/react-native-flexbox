@@ -13,10 +13,10 @@ export default class FlexboxBasics extends React.Component {
   };
   render() {
     return (
-      <View style={styles.box}>
-        <Box style={{backgroundColor: 'orange'}}/>
-        <Box style={{backgroundColor: 'salmon'}}/>
+      <View style={styles.container}>
         <Box style={{backgroundColor: 'darksalmon'}}/>
+        <Box style={{backgroundColor: 'salmon'}}/>
+        <Box style={{backgroundColor: 'peachpuff'}}/>
       </View>
     );
   }
@@ -25,6 +25,9 @@ export default class FlexboxBasics extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    // flex: 1,
+    // flexDirection: 'row',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   }
 });

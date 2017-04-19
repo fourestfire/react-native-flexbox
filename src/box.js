@@ -18,5 +18,7 @@ const styles = StyleSheet.create({
     width: 75,
     margin: 5,
     backgroundColor: 'lightgrey',
+    borderColor: 'black',
+    borderWidth: 1
   }
 });

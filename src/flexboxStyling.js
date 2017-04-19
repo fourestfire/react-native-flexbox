@@ -9,14 +9,16 @@ import {
 } from 'react-native';
 
 const sampleContact = {
-  Name: 'Damon Doggo',
-  Address: '123 Main Street',
-  PhoneNumber: '212-787-4949',
-  FavoriteFood: 'Pizza',
-  Hobbies: 'Tennis, Frisbee'
+  'Name': 'Damon Doggo',
+  'Address': '123 Main Street',
+  'Phone Number': '212-787-4949',
+  'Favorite Food': 'Pizza',
+  'Hobbies': 'Tennis, Frisbee'
 }
 
-export default class flexbox extends Component {
+const firstName = sampleContact.Name.split(' ')[0];
+
+export default class Flexbox extends Component {
   static navigationOptions = {
     title: 'Flexbox Styling',
   };
@@ -24,18 +26,16 @@ export default class flexbox extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.profilePicture}>
-          <Image source={require('../img/doggo.jpg')} style={{height: 140, width: 140, borderRadius: 70, marginBottom: 20}}/>
-          <Text style={[styles.text, {fontSize: 27, fontWeight:'100'}]}> {sampleContact.Name.split(' ')[0]} </Text>
+        <View style={styles.profileContainer}>
+          <Image source={require('../img/doggo.jpg')} style={styles.profileImage}/>
+          <Text style={[styles.profileText]}> {firstName} </Text>
         </View>
-
-        {/*<View style={styles.divider} />*/}
         {
           Object.keys(sampleContact).map(key => {
             return (
-              <View key={key} style={styles.contactRow}>
-                <Text style={styles.contactKey}> {key.replace(/([A-Z])/g, ' $1')} </Text>
-                <Text style={styles.contactValue}> {sampleContact[key]} </Text>
+              <View key={key} style={styles.contactRowContainer}>
+                <Text style={[styles.text, styles.contactKey]}> {key} </Text>
+                <Text style={[styles.text, styles.contactValue]}> {sampleContact[key]} </Text>
               </View>
             );
           })
@@ -48,44 +48,47 @@ export default class flexbox extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: 30,
-  },
-
-  divider: {
-    borderBottomWidth: 1,
-    borderColor: 'lightgrey',
+    backgroundColor: 'white'
   },
 
   text: {
-    fontSize: 16,
+    fontSize: 15
   },
 
-  profilePicture: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'ghostwhite',
-    flex: 1,
-    borderRadius: 10
+  profileImage: {
+    height: 140,
+    width: 140,
+    borderRadius: 70,
+    marginBottom: 20
   },
 
-  contactRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'lightgrey',
+  profileText: {
+    fontSize: 27,
+    fontWeight:'100'
+  },
+
+  profileContainer: {
+    backgroundColor: 'lavender',
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+  },
+
+  contactRowContainer: {
+    // flexDirection: 'row',
+    // borderBottomWidth: 1,
+    // borderColor: 'lightgrey',
+    // alignItems: 'center',
   },
 
   contactKey: {
-    marginLeft: 10,
-    width: 120,
     fontWeight: 'bold',
+    // marginLeft: 10,
+    // width: 130,
   },
 
   contactValue: {
-    paddingVertical: 26 // adjust this for fun after setting flexGrow on sibling
+    // paddingVertical: 24
   }
 
 });
-
-AppRegistry.registerComponent('flexbox', () => flexbox);
-
